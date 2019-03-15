@@ -1,8 +1,9 @@
-// let imageSite = "";
+
 
 const firstImage = function(){
 		const image1 = `<img class="p-center img mx-auto" src="img/plane-841441_1920.jpg" id="1pic" alt="first-img"></img>`
-		$(`#mainPic`).prepend(image1);
+        $(`#mainPic`).prepend(image1);
+        $(`#infoLoc`).hide();
 }
 $(document).ready(firstImage);
 
@@ -58,12 +59,16 @@ const newImage = function(event){
     
 
     const nextImage = function(event){
-        const unsplashKey = `c1638356e44b65cce170e218dbe0b09c791d81a2f187d80010e44b61b3d9ed07`
-        // let locationPicURL = `https://api.unsplash.com/photos/?client_id=${unsplashKey}`
-
-        let locationPicURL = `https://api.unsplash.com/search/collections?page=1&query=office/?client_id=${unsplashKey}`
         
+        const unsplashKey = `b5970b91de7abb8c539c033b97560c2844c67745ee6579578bacbe7def09e3c5`
 
+        // let countryPic = city123 + "%20" + region123 + "%20"+ country123;
+        let countryPic = city123 + "%20"+ country123;
+        let locationPicURL = `https://api.unsplash.com/search/photos?query=${countryPic}&client_id=${unsplashKey}`
+        // let locationPicURL = `https://api.unsplash.com/search/photos?query=${country123}&client_id=${unsplashKey}`
+        
+        $(`#takeOut`).remove();
+        // let picRemove = 0;
         $.ajax({
             url: locationPicURL,
                   method: 'GET',
@@ -71,16 +76,17 @@ const newImage = function(event){
           })
           
           .then(function(response) {
-          
+            console.log(response.results[0].urls.raw);          
                   console.log(response);
-                //   const photoRef = response.candidates[0].photos[0].photo_reference
+
+                  const photoRef = response.results[0].urls.raw
                 //   let pictureURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoRef}&key=AIzaSyB_S5w_dRoEXEiiJtMpQ2IL_P7IsHDUaiA`
       
-                  // const picLocation = $(`<img class="image"src="${pictureURL}">`)
-                //   const picLocation = $(`<img class="p-center img mx-auto" src="${pictureURL}" alt="first-img"></img>`)
+                //   const picLocation = $(`<img class="image"src="${pictureURL}">`)
+                  const picLocation = $(`<img class="p-center img mx-auto" src="${photoRef}" alt="first-img" id="takeOut"></img>`)
       
-                //   $(`#mainPic`).prepend(picLocation);
-                //   $('#1pic').hide();
+                  $(`#mainPic`).prepend(picLocation);
+                  $('#1pic').hide();
       
           
               }) //End of picture ajax

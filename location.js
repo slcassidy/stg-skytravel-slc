@@ -118,9 +118,10 @@ function getcitydetails(fqcn) {
 // Button click and the process runs after the button is clicked
 	
 $(`.btn`).on("click",function(){
-
+	$(`#landingPg`).hide();
+	$(`#infoLoc`).show();
 	// newImage();
-	// nextImage();
+	nextImage();
 	console.log(country123);
 	console.log(region123);
 	console.log(city123);
