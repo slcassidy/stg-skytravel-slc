@@ -4,6 +4,8 @@ const firstImage = function(){
 		const image1 = `<img class="p-center img mx-auto" src="img/plane-841441_1920.jpg" id="1pic" alt="first-img"></img>`
         $(`#mainPic`).prepend(image1);
         $(`#infoLoc`).hide();
+        $(`#linkMove`).hide();
+        
 }
 $(document).ready(firstImage);
 

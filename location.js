@@ -119,6 +119,7 @@ function getcitydetails(fqcn) {
 	
 $(`.btn`).on("click",function(){
 	$(`#landingPg`).hide();
+	$(`#linkMove`).show();
 	$(`#infoLoc`).show();
 	// newImage();
 	nextImage();
